@@ -1,4 +1,4 @@
-tensorflow# or your desired version
+tensorflow==2.20.0# or your desired version
 keras
 numpy
 pandas
