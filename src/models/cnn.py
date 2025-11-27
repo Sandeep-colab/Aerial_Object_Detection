@@ -1,19 +1,25 @@
 import tensorflow as tf
-from tensorflow.keras import layers, models
+from keras import layers, models
 
 def build_custom_cnn_model(input_shape, normalization_layer, augmentation_layer):
     """
     Builds a custom Convolutional Neural Network (CNN) model.
     """
     model = models.Sequential([
+        # Add a Keras Input layer as the very first element
+        layers.Input(shape=input_shape), 
+        
         # 1. Preprocessing and Augmentation Layers
         normalization_layer,
         augmentation_layer,
 
         # 2. Convolutional Blocks
-        layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
+        # input_shape is now passed via the Input layer, remove it here
+        layers.Conv2D(32, (3, 3), activation='relu'), 
         layers.MaxPooling2D((2, 2)),
         layers.BatchNormalization(),
+        
+        # ... rest of the layers remain the same ...
         
         layers.Conv2D(64, (3, 3), activation='relu'),
         layers.MaxPooling2D((2, 2)),
@@ -36,7 +42,7 @@ def build_custom_cnn_model(input_shape, normalization_layer, augmentation_layer)
     return model
 
 if __name__ == '__main__':
-    from data_utils import IMG_SIZE, get_preprocessing_layers
+    from src.data_utils import IMG_SIZE, get_preprocessing_layers
     norm, aug = get_preprocessing_layers()
     input_shape = IMG_SIZE + (3,)
     model = build_custom_cnn_model(input_shape, norm, aug)
