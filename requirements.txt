@@ -1,0 +1,9 @@
+tensorflow==2.16.1 # or your desired version
+keras==3.3.3
+numpy
+pandas
+matplotlib
+scikit-learn
+Pillow
+streamlit
+ultralytics # for the optional YOLOv8 part
