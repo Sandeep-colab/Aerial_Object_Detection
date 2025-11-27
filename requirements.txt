@@ -1,5 +1,5 @@
-tensorflow==2.16.1 # or your desired version
-keras==3.3.3
+tensorflow# or your desired version
+keras
 numpy
 pandas
 matplotlib
